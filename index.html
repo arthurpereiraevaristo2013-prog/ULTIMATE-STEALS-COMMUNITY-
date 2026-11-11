@@ -1,0 +1,613 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Site oficial do jogo ULTIMATE STEALS [OLD] no Roblox: novidades, updates e links do jogo e do grupo.">
+<title>ULTIMATE STEALS [OLD]</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+
+/* Layout: barra de topo com marca e botão Jogar, hero dividido (texto + capa recortada em diagonal), feed de novidades em linhas, 3 passos para entrar, rodapé com acesso admin. Visual único e escuro, vermelho "Cyber Base" com ar de neve de fim de ano. */
+:root {
+  --bg: #0c0709;
+  --surface: #160b0f;
+  --surface-2: #211118;
+  --line: #3a1c24;
+  --fg: #f7ecee;
+  --muted: #b79ba1;
+  --red: #ff2e3f;
+  --btn: #e5172b;
+  --btn-hover: #ff3347;
+  --ice: #d6e8f2;
+  --amber: #ffb43a;
+  --orange: #ff7d4a;
+  --font-display: 'Chakra Petch', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: radial-gradient(900px 520px at 88% -8%, rgba(255, 46, 63, 0.24), transparent 62%), radial-gradient(700px 420px at -10% 40%, rgba(214, 232, 242, 0.05), transparent 60%), var(--bg);
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 28px;
+}
+.wrap { max-width: 1120px; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; }
+button, input, select, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+/* topo */
+.top { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-block: 18px; border-bottom: 1px solid var(--line); }
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+.brand-mark { flex: none; width: 38px; height: 38px; display: grid; place-items: center; background: var(--btn); color: #fff; font: 700 15px/1 var(--font-display); letter-spacing: 0.04em; clip-path: polygon(0 0, calc(100% - 9px) 0, 100% 9px, 100% 100%, 9px 100%, 0 calc(100% - 9px)); }
+.brand-name { font: 600 15px/1.1 var(--font-display); letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
+.brand-name small { display: block; font: 500 11px/1.3 var(--font-mono); color: var(--muted); letter-spacing: 0.12em; margin-top: 3px; }
+.nav { display: flex; align-items: center; gap: 22px; }
+.nav a.link { text-decoration: none; color: var(--muted); font-size: 14px; font-weight: 500; }
+.nav a.link:hover { color: var(--fg); }
+
+/* botões */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border: 0; border-radius: 3px; background: var(--btn); color: #fff; font: 700 17px/1 var(--font-display); letter-spacing: 0.06em; text-transform: uppercase; text-decoration: none; padding: 17px 28px; box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) inset, 0 10px 34px rgba(229, 23, 43, 0.38); transition: background 0.15s, transform 0.15s; }
+.btn:hover { background: var(--btn-hover); transform: translateY(-1px); }
+.btn .arr { transition: transform 0.15s; }
+.btn:hover .arr { transform: translateX(4px); }
+.btn.sm { font-size: 13px; padding: 11px 16px; box-shadow: none; }
+.ghost { background: transparent; border: 1px solid var(--line); color: var(--fg); border-radius: 3px; font: 600 14px/1 var(--font-body); padding: 15px 20px; transition: border-color 0.15s, background 0.15s; }
+.ghost:hover { border-color: var(--muted); background: var(--surface); }
+.ghost.sm { padding: 9px 12px; font-size: 13px; }
+.ghost.danger:hover { border-color: var(--red); color: var(--red); }
+
+/* hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr); gap: 44px; align-items: center; padding-block: 52px 60px; }
+.eyebrow { display: inline-flex; align-items: center; gap: 10px; font: 500 12px/1 var(--font-mono); letter-spacing: 0.16em; text-transform: uppercase; color: var(--ice); }
+.eyebrow i { width: 8px; height: 8px; border-radius: 50%; background: var(--red); box-shadow: 0 0 12px var(--red); }
+h1 { font: 700 clamp(2.5rem, 7vw, 4.7rem)/0.95 var(--font-display); letter-spacing: -0.01em; text-transform: uppercase; margin: 18px 0 18px; text-wrap: balance; }
+h1 .tag { display: block; margin-top: 10px; color: var(--red); font-size: 0.5em; letter-spacing: 0.22em; }
+.lede { color: var(--muted); max-width: 44ch; margin: 0 0 30px; font-size: 17px; }
+.cta-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.cta-note { margin: 16px 0 0; font: 500 12px/1.4 var(--font-mono); color: var(--muted); letter-spacing: 0.06em; }
+.cover { position: relative; filter: drop-shadow(0 0 30px rgba(255, 46, 63, 0.38)); min-width: 0; }
+.cover-in { position: relative; aspect-ratio: 646 / 365; max-width: 100%; clip-path: polygon(0 0, calc(100% - 34px) 0, 100% 34px, 100% 100%, 34px 100%, 0 calc(100% - 34px)); background: var(--surface); }
+.cover-in img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.cover-in::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, rgba(0, 0, 0, 0.14) 0 1px, transparent 1px 3px); pointer-events: none; }
+
+/* seções */
+.sec { padding-block: 56px 8px; border-top: 1px solid var(--line); }
+.sec-head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 18px 24px; margin-bottom: 8px; }
+h2 { font: 700 clamp(1.7rem, 4vw, 2.4rem)/1.05 var(--font-display); text-transform: uppercase; margin: 0; letter-spacing: 0.01em; }
+.sub { color: var(--muted); margin: 8px 0 0; max-width: 52ch; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { background: transparent; border: 1px solid var(--line); color: var(--muted); border-radius: 999px; padding: 8px 14px; font: 500 13px/1 var(--font-body); transition: all 0.15s; }
+.chip:hover { color: var(--fg); border-color: var(--muted); }
+.chip[aria-pressed="true"] { background: var(--fg); border-color: var(--fg); color: var(--bg); }
+
+/* feed */
+.feed { margin-top: 18px; }
+.post { display: grid; grid-template-columns: 168px minmax(0, 1fr); gap: 8px 28px; padding-block: 26px; border-top: 1px solid var(--line); }
+.post:first-child { border-top: 0; }
+.post-meta { display: flex; flex-direction: column; gap: 8px; font: 500 12px/1.2 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.post-meta .ver { color: var(--fg); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
+.pill { --c: var(--red); display: inline-block; border: 1px solid var(--c); color: var(--c); border-radius: 2px; padding: 4px 8px; font: 600 11px/1 var(--font-mono); letter-spacing: 0.12em; text-transform: uppercase; }
+.pill[data-t="anuncio"] { --c: var(--ice); }
+.pill[data-t="evento"] { --c: var(--amber); }
+.pill[data-t="aviso"] { --c: var(--orange); }
+.pill.solid { background: var(--c); color: #1a0508; }
+.pill.fix { --c: var(--muted); }
+.post h3 { font: 600 clamp(1.25rem, 3vw, 1.6rem)/1.2 var(--font-display); margin: 0 0 8px; text-wrap: balance; }
+.post p { margin: 0; color: #dbc7cb; white-space: pre-line; max-width: 68ch; overflow-wrap: anywhere; }
+.empty { border: 1px dashed var(--line); padding: 28px; color: var(--muted); border-radius: 4px; }
+
+/* passos */
+.steps { list-style: none; counter-reset: s; margin: 26px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border: 1px solid var(--line); }
+.steps li { counter-increment: s; padding: 24px; border-left: 1px solid var(--line); }
+.steps li:first-child { border-left: 0; }
+.steps li::before { content: counter(s); display: block; font: 700 40px/1 var(--font-display); color: var(--red); margin-bottom: 14px; }
+.steps b { display: block; font: 600 18px/1.2 var(--font-display); margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.03em; }
+.steps span { color: var(--muted); font-size: 15px; }
+.final { margin-top: 56px; padding: 40px 28px; background: linear-gradient(120deg, rgba(229, 23, 43, 0.22), rgba(229, 23, 43, 0.04)), var(--surface); border: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 20px 32px; align-items: center; justify-content: space-between; }
+.final + .final { margin-top: 16px; }
+.final h2 { font-size: clamp(1.5rem, 3.6vw, 2.1rem); }
+
+/* rodapé */
+.foot { margin-top: 56px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between; color: var(--muted); font-size: 13px; }
+.foot p { margin: 0; max-width: 62ch; }
+.foot button { background: none; border: 1px solid var(--line); border-radius: 3px; color: var(--muted); padding: 9px 14px; font: 500 12px/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; }
+.foot button:hover { color: var(--fg); border-color: var(--muted); }
+
+/* admin */
+.overlay { position: fixed; inset: 0; z-index: 50; background: rgba(6, 3, 4, 0.82); display: flex; align-items: flex-start; justify-content: center; overflow-y: auto; padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px)); }
+.sheet { position: relative; width: 100%; max-width: 760px; margin-block: 4vh; background: var(--surface); border: 1px solid var(--line); border-top: 3px solid var(--red); padding: 28px; }
+.sheet h2 { font-size: 1.6rem; }
+.x { position: absolute; top: 12px; right: 12px; width: 40px; height: 40px; border: 0; background: none; color: var(--muted); font-size: 26px; line-height: 1; }
+.x:hover { color: var(--fg); }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label, .lbl { font: 600 12px/1 var(--font-mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+.field input, .field select, .field textarea { width: 100%; background: var(--surface-2); border: 1px solid var(--line); border-radius: 3px; padding: 12px 14px; color: var(--fg); font-size: 16px; }
+.field textarea { min-height: 130px; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { border-color: var(--red); outline: none; }
+.row2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.form { display: grid; gap: 16px; margin-top: 20px; }
+.check { display: flex; align-items: center; gap: 10px; font-size: 15px; }
+.check input { width: 18px; height: 18px; accent-color: var(--btn); }
+.msg { margin: 0; font-size: 14px; min-height: 1.4em; }
+.msg.err { color: #ff8b95; }
+.msg.ok { color: #8fe3a8; }
+.bar { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; padding-right: 36px; }
+.alist { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--line); }
+.alist li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 14px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.alist .t { min-width: 0; }
+.alist .t b { display: block; font-weight: 600; overflow-wrap: anywhere; }
+.alist .t small { font: 500 12px/1.4 var(--font-mono); color: var(--muted); }
+.alist .acts { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
+.hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0 0; }
+.toast { position: fixed; left: 50%; bottom: max(20px, env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 70; background: var(--fg); color: var(--bg); padding: 11px 18px; border-radius: 3px; font-size: 14px; font-weight: 500; max-width: calc(100% - 32px); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 36px; padding-block: 36px 44px; }
+  .post { grid-template-columns: minmax(0, 1fr); }
+  .post-meta { flex-direction: row; gap: 14px; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .steps li { border-left: 0; border-top: 1px solid var(--line); }
+  .steps li:first-child { border-top: 0; }
+  .nav a.link { display: none; }
+}
+@media (max-width: 480px) {
+  .btn { width: 100%; }
+  .brand-name small { display: none; }
+  .sheet { padding: 22px 18px; }
+  .alist li { grid-template-columns: minmax(0, 1fr); }
+  .alist .acts { justify-content: flex-start; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="brand" href="#topo" aria-label="Início">
+      <span class="brand-mark">US</span>
+      <span class="brand-name">Ultimate Steals<small>[OLD] · ROBLOX</small></span>
+    </a>
+    <nav class="nav" aria-label="Principal">
+      <a class="link" href="#novidades">Novidades</a>
+      <a class="link" href="#grupo">Grupo</a>
+      <a class="btn sm game-link" href="#" target="_blank" rel="noopener noreferrer">Jogar</a>
+    </nav>
+  </header>
+
+  <main id="topo">
+    <section class="hero">
+      <div>
+        <span class="eyebrow"><i></i>Experiência do Roblox</span>
+        <h1>Ultimate Steals<span class="tag">[OLD]</span></h1>
+        <p class="lede">Acompanhe as updates, os anúncios e os eventos do jogo e entre direto no servidor com um toque.</p>
+        <div class="cta-row">
+          <a class="btn game-link" href="#" target="_blank" rel="noopener noreferrer">Jogar agora <span class="arr" aria-hidden="true">&rarr;</span></a>
+          <button type="button" class="ghost" id="copy-link">Copiar link do jogo</button>
+        </div>
+        <p class="cta-note">Abre roblox.com em uma nova aba</p>
+      </div>
+      <div class="cover">
+        <div class="cover-in"><img src="cover.jpg" width="646" height="365" alt="Capa de Ultimate Steals [OLD]: um robô gigante vermelho atrás da Cyber Base e dois jogadores correndo na neve"></div>
+      </div>
+    </section>
+
+    <section class="sec" id="novidades" aria-labelledby="h-nov">
+      <div class="sec-head">
+        <div>
+          <h2 id="h-nov">Novidades</h2>
+          <p class="sub">Updates, anúncios, eventos e avisos publicados pela equipe do jogo.</p>
+        </div>
+        <div class="chips" id="chips" role="group" aria-label="Filtrar por tipo">
+          <button type="button" class="chip" data-f="todos" aria-pressed="true">Tudo</button>
+          <button type="button" class="chip" data-f="update" aria-pressed="false">Updates</button>
+          <button type="button" class="chip" data-f="anuncio" aria-pressed="false">Anúncios</button>
+          <button type="button" class="chip" data-f="evento" aria-pressed="false">Eventos</button>
+          <button type="button" class="chip" data-f="aviso" aria-pressed="false">Avisos</button>
+        </div>
+      </div>
+      <div class="feed" id="feed" aria-live="polite"></div>
+    </section>
+
+    <section class="sec" id="grupo" aria-labelledby="h-grp">
+      <div class="final" style="margin-top:0">
+        <div>
+          <h2 id="h-grp">Entre no nosso grupo</h2>
+          <p class="sub">Participe do grupo do Roblox para acompanhar a comunidade e não perder nenhuma novidade.</p>
+        </div>
+        <a class="btn group-link" href="#" target="_blank" rel="noopener noreferrer">Entrar no grupo <span class="arr" aria-hidden="true">&rarr;</span></a>
+      </div>
+      <div class="final">
+        <h2>Pronto para jogar?</h2>
+        <a class="btn game-link" href="#" target="_blank" rel="noopener noreferrer">Jogar agora <span class="arr" aria-hidden="true">&rarr;</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <p>Site do jogo ULTIMATE STEALS [OLD]. Roblox é marca da Roblox Corporation e este site não é operado por ela.</p>
+    <button type="button" id="open-admin">Painel admin</button>
+  </footer>
+</div>
+
+<div class="overlay" id="adm" hidden>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="adm-title">
+    <button type="button" class="x" id="adm-close" aria-label="Fechar painel">&times;</button>
+
+    <section id="adm-login">
+      <h2 id="adm-title">Painel admin</h2>
+      <p class="sub">Digite o código de acesso para publicar novidades.</p>
+      <form class="form" id="login-form" autocomplete="off">
+        <div class="field">
+          <label for="code">Código de acesso</label>
+          <input id="code" type="password" inputmode="numeric" autocomplete="off" required>
+        </div>
+        <p class="msg err" id="login-err" role="alert"></p>
+        <div><button type="submit" class="btn sm" id="login-btn">Entrar</button></div>
+      </form>
+    </section>
+
+    <section id="adm-panel" hidden>
+      <div class="bar">
+        <h2>Gerenciar novidades</h2>
+        <button type="button" class="ghost sm" id="logout">Sair do painel</button>
+      </div>
+      <form class="form" id="post-form">
+        <div class="row2">
+          <div class="field">
+            <label for="p-type">Tipo</label>
+            <select id="p-type">
+              <option value="update">Update</option>
+              <option value="anuncio">Anúncio</option>
+              <option value="evento">Evento</option>
+              <option value="aviso">Aviso</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="p-version">Versão (opcional)</label>
+            <input id="p-version" type="text" maxlength="16" placeholder="v1.4">
+          </div>
+          <div class="field">
+            <label for="p-date">Data</label>
+            <input id="p-date" type="date" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="p-title">Título</label>
+          <input id="p-title" type="text" maxlength="90" required placeholder="Ex.: Nova update chegou">
+        </div>
+        <div class="field">
+          <label for="p-body">Texto</label>
+          <textarea id="p-body" maxlength="1500" required placeholder="Conte o que mudou. Linhas em branco são mantidas."></textarea>
+        </div>
+        <label class="check" for="p-pin"><input id="p-pin" type="checkbox"> Fixar no topo da lista</label>
+        <p class="msg" id="p-status" role="status"></p>
+        <div class="cta-row">
+          <button type="submit" class="btn sm" id="p-save">Adicionar à lista</button>
+          <button type="button" class="ghost sm" id="p-cancel" hidden>Cancelar edição</button>
+        </div>
+      </form>
+      <hr class="hr">
+      <div class="bar" style="margin-top:22px"><span class="lbl">Publicações na lista</span></div>
+      <ul class="alist" id="alist"></ul>
+      <hr class="hr">
+      <div class="form">
+        <div class="bar"><span class="lbl">Salvar no GitHub</span></div>
+        <p class="sub" style="margin:0">As mudanças acima só aparecem para você. Para valerem para todos: copie o texto abaixo, abra o arquivo posts.json no GitHub, toque no lápis para editar, apague tudo, cole e salve (Commit changes).</p>
+        <div class="field">
+          <label for="json-out">Conteúdo do posts.json</label>
+          <textarea id="json-out" readonly style="font-family:var(--font-mono);font-size:13px;min-height:180px"></textarea>
+        </div>
+        <div><button type="button" class="btn sm" id="copy-json">Copiar texto</button></div>
+      </div>
+    </section>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+(function () {
+  var GAME = 'https://www.roblox.com/share?code=872d26b6b551624194ee9131f922cfc0&type=ExperienceDetails&stamp=1794426967552';
+  var GROUP = 'https://www.roblox.com/share/g/189630061';
+  var SALT = 'ultimate-steals-old|';
+  var CODE_HASH = '6a3105dce1965606d2d6ae178411b836a1fe80447a0fcf8f7548eeebc4a81c67';
+  var TYPES = { update: 'Update', anuncio: 'Anúncio', evento: 'Evento', aviso: 'Aviso' };
+
+  var state = { posts: [] };
+  var loaded = false;
+  var filter = 'todos';
+  var editId = null;
+
+  var $ = function (id) { return document.getElementById(id); };
+  function ssGet(k) { try { return sessionStorage.getItem(k); } catch (e) { return null; } }
+  function ssSet(k, v) { try { sessionStorage.setItem(k, v); } catch (e) {} }
+  function ssDel(k) { try { sessionStorage.removeItem(k); } catch (e) {} }
+  function el(tag, cls, text) {
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (text != null) n.textContent = text;
+    return n;
+  }
+  function toast(msg) {
+    var t = $('toast');
+    t.textContent = msg;
+    t.hidden = false;
+    clearTimeout(toast._t);
+    toast._t = setTimeout(function () { t.hidden = true; }, 2600);
+  }
+  function copyText(text, okMsg) {
+    var fallback = function () {
+      try {
+        var ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        var ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+        if (ok) { toast(okMsg); return; }
+      } catch (e) {}
+      toast('Não foi possível copiar. Selecione o texto e copie manualmente.');
+    };
+    try { navigator.clipboard.writeText(text).then(function () { toast(okMsg); }, fallback); }
+    catch (e) { fallback(); }
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.game-link'), function (a) { a.href = GAME; });
+  Array.prototype.forEach.call(document.querySelectorAll('.group-link'), function (a) { a.href = GROUP; });
+  $('copy-link').addEventListener('click', function () { copyText(GAME, 'Link do jogo copiado'); });
+
+  function parseDate(s) {
+    var d = new Date(String(s) + 'T12:00:00');
+    return isNaN(d.getTime()) ? new Date() : d;
+  }
+  function fmtDate(s) {
+    return parseDate(s).toLocaleDateString('pt-BR', { day: '2-digit', month: 'short', year: 'numeric' }).replace(/\./g, '');
+  }
+  function isNew(s) { return (Date.now() - parseDate(s).getTime()) < 7 * 86400000; }
+  function today() {
+    var d = new Date();
+    return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+  }
+  function sorted() {
+    return state.posts.slice().sort(function (a, b) {
+      if (!!a.pinned !== !!b.pinned) return a.pinned ? -1 : 1;
+      return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+    });
+  }
+
+  function renderFeed() {
+    var feed = $('feed');
+    feed.textContent = '';
+    if (!loaded) { feed.appendChild(el('div', 'empty', 'Carregando novidades...')); return; }
+    var list = sorted().filter(function (p) { return filter === 'todos' || p.type === filter; });
+    if (!list.length) {
+      feed.appendChild(el('div', 'empty', filter === 'todos' ? 'Nenhuma novidade publicada ainda. Volte em breve.' : 'Nenhuma publicação nessa categoria ainda.'));
+      return;
+    }
+    list.forEach(function (p) {
+      var a = el('article', 'post');
+      var meta = el('div', 'post-meta');
+      var t = el('time', null, fmtDate(p.date));
+      t.setAttribute('datetime', p.date);
+      meta.appendChild(t);
+      if (p.version) meta.appendChild(el('span', 'ver', p.version));
+      var main = el('div');
+      var tags = el('div', 'tags');
+      var pill = el('span', 'pill', TYPES[p.type] || 'Update');
+      pill.setAttribute('data-t', p.type);
+      tags.appendChild(pill);
+      if (isNew(p.date)) tags.appendChild(el('span', 'pill solid', 'Novo'));
+      if (p.pinned) tags.appendChild(el('span', 'pill fix', 'Fixado'));
+      main.appendChild(tags);
+      main.appendChild(el('h3', null, p.title));
+      main.appendChild(el('p', null, p.body));
+      a.appendChild(meta);
+      a.appendChild(main);
+      feed.appendChild(a);
+    });
+  }
+
+  $('chips').addEventListener('click', function (e) {
+    var b = e.target.closest('.chip');
+    if (!b) return;
+    filter = b.getAttribute('data-f');
+    Array.prototype.forEach.call($('chips').children, function (c) {
+      c.setAttribute('aria-pressed', c === b ? 'true' : 'false');
+    });
+    renderFeed();
+  });
+
+  /* painel admin: monta o posts.json atualizado para colar no GitHub */
+  function sha256hex(text) {
+    if (!(window.crypto && crypto.subtle)) return Promise.reject(new Error('nocrypto'));
+    return crypto.subtle.digest('SHA-256', new TextEncoder().encode(text)).then(function (buf) {
+      return Array.prototype.map.call(new Uint8Array(buf), function (b) { return b.toString(16).padStart(2, '0'); }).join('');
+    });
+  }
+  function openAdmin() {
+    $('adm').hidden = false;
+    document.documentElement.style.overflow = 'hidden';
+    if (ssGet('us-admin') === '1') showPanel(); else showLogin();
+  }
+  function closeAdmin() {
+    $('adm').hidden = true;
+    document.documentElement.style.overflow = '';
+    $('open-admin').focus();
+  }
+  function showLogin() {
+    $('adm-login').hidden = false;
+    $('adm-panel').hidden = true;
+    $('code').value = '';
+    $('login-err').textContent = '';
+    setTimeout(function () { $('code').focus(); }, 30);
+  }
+  function showPanel() {
+    $('adm-login').hidden = true;
+    $('adm-panel').hidden = false;
+    resetForm();
+    renderAdminList();
+    refreshJson();
+  }
+  function setStatus(cls, msg) {
+    $('p-status').className = 'msg' + (cls ? ' ' + cls : '');
+    $('p-status').textContent = msg;
+  }
+  function resetForm() {
+    editId = null;
+    $('post-form').reset();
+    $('p-date').value = today();
+    $('p-save').textContent = 'Adicionar à lista';
+    $('p-cancel').hidden = true;
+    setStatus('', '');
+  }
+  function refreshJson() {
+    $('json-out').value = JSON.stringify({ posts: state.posts }, null, 2);
+  }
+  function applyLocal(next, msg) {
+    state.posts = next;
+    loaded = true;
+    renderFeed();
+    renderAdminList();
+    refreshJson();
+    resetForm();
+    setStatus('ok', msg || 'Lista atualizada. Agora copie o texto abaixo e salve no GitHub.');
+  }
+
+  function renderAdminList() {
+    var ul = $('alist');
+    ul.textContent = '';
+    var list = sorted();
+    if (!list.length) {
+      var li0 = el('li');
+      li0.appendChild(el('span', 'sub', 'Nenhuma publicação ainda. Use o formulário acima.'));
+      ul.appendChild(li0);
+      return;
+    }
+    list.forEach(function (p) {
+      var li = el('li');
+      var t = el('div', 't');
+      t.appendChild(el('b', null, p.title));
+      t.appendChild(el('small', null, (TYPES[p.type] || 'Update') + ' · ' + fmtDate(p.date) + (p.version ? ' · ' + p.version : '') + (p.pinned ? ' · fixado' : '')));
+      var acts = el('div', 'acts');
+      var bEdit = el('button', 'ghost sm', 'Editar');
+      bEdit.type = 'button';
+      bEdit.addEventListener('click', function () { startEdit(p.id); });
+      var bPin = el('button', 'ghost sm', p.pinned ? 'Desafixar' : 'Fixar');
+      bPin.type = 'button';
+      bPin.addEventListener('click', function () {
+        applyLocal(state.posts.map(function (x) { return x.id === p.id ? Object.assign({}, x, { pinned: !x.pinned }) : x; }));
+      });
+      var bDel = el('button', 'ghost sm danger', 'Apagar');
+      bDel.type = 'button';
+      var armed = false;
+      bDel.addEventListener('click', function () {
+        if (!armed) {
+          armed = true;
+          bDel.textContent = 'Confirmar apagar';
+          setTimeout(function () { armed = false; bDel.textContent = 'Apagar'; }, 4000);
+          return;
+        }
+        applyLocal(state.posts.filter(function (x) { return x.id !== p.id; }));
+      });
+      acts.appendChild(bEdit);
+      acts.appendChild(bPin);
+      acts.appendChild(bDel);
+      li.appendChild(t);
+      li.appendChild(acts);
+      ul.appendChild(li);
+    });
+  }
+
+  function startEdit(id) {
+    var p = state.posts.filter(function (x) { return x.id === id; })[0];
+    if (!p) return;
+    editId = id;
+    $('p-type').value = p.type;
+    $('p-version').value = p.version || '';
+    $('p-date').value = p.date;
+    $('p-title').value = p.title;
+    $('p-body').value = p.body;
+    $('p-pin').checked = !!p.pinned;
+    $('p-save').textContent = 'Salvar alterações';
+    $('p-cancel').hidden = false;
+    setStatus('', '');
+    $('p-title').focus();
+    $('post-form').scrollIntoView({ block: 'start' });
+  }
+
+  $('open-admin').addEventListener('click', openAdmin);
+  $('adm-close').addEventListener('click', closeAdmin);
+  $('adm').addEventListener('mousedown', function (e) { if (e.target === $('adm')) closeAdmin(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !$('adm').hidden) closeAdmin(); });
+
+  $('login-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var err = $('login-err');
+    err.textContent = '';
+    sha256hex(SALT + $('code').value.trim()).then(function (h) {
+      if (h === CODE_HASH) { ssSet('us-admin', '1'); showPanel(); }
+      else { err.textContent = 'Código incorreto. Confira e tente de novo.'; $('code').select(); }
+    }, function () {
+      err.textContent = 'Este navegador não permite validar o código. Abra o site em um navegador atualizado.';
+    });
+  });
+  $('logout').addEventListener('click', function () { ssDel('us-admin'); showLogin(); });
+  $('p-cancel').addEventListener('click', resetForm);
+  $('copy-json').addEventListener('click', function () { copyText($('json-out').value, 'Texto copiado. Cole no posts.json do GitHub.'); });
+
+  $('post-form').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var title = $('p-title').value.trim();
+    var body = $('p-body').value.trim();
+    if (!title || !body) { setStatus('err', 'Preencha o título e o texto.'); return; }
+    var item = {
+      id: editId || ('p' + Date.now().toString(36) + Math.random().toString(36).slice(2, 6)),
+      type: $('p-type').value,
+      version: $('p-version').value.trim(),
+      title: title,
+      body: body,
+      date: $('p-date').value || today(),
+      pinned: $('p-pin').checked
+    };
+    var next = editId
+      ? state.posts.map(function (x) { return x.id === editId ? item : x; })
+      : state.posts.concat([item]);
+    applyLocal(next);
+  });
+
+  renderFeed();
+  fetch('posts.json', { cache: 'no-store' })
+    .then(function (r) { if (!r.ok) throw new Error('http'); return r.json(); })
+    .then(function (data) {
+      state.posts = (data && Array.isArray(data.posts)) ? data.posts : [];
+      loaded = true;
+      renderFeed();
+      if (!$('adm-panel').hidden) { renderAdminList(); refreshJson(); }
+    })
+    .catch(function () {
+      loaded = true;
+      renderFeed();
+    });
+})();
+</script>
+</body>
+</html>

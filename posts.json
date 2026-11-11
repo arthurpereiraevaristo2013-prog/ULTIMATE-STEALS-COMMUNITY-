@@ -1,0 +1,13 @@
+{
+  "posts": [
+    {
+      "id": "p-boas-vindas",
+      "type": "anuncio",
+      "version": "",
+      "title": "Site oficial no ar",
+      "body": "Aqui você acompanha todas as updates, anúncios e eventos de ULTIMATE STEALS [OLD]. Aperte Jogar agora para entrar no jogo.",
+      "date": "2026-11-11",
+      "pinned": true
+    }
+  ]
+}
